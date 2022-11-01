@@ -4,8 +4,11 @@
      grid-template-columns: repeat(16,1fr);
      width: 500px;
      margin: 10em auto;
-     border: solid;
 }
 .container > * {
-    visibility: hidden;
+    min-height: 1.5em;
+}
+
+.hover {
+    background-color: black;
 }
