@@ -1,0 +1,11 @@
+.container {
+    background-color:pink;
+    display:grid;
+     grid-template-columns: repeat(16,1fr);
+     width: 500px;
+     margin: 10em auto;
+     border: solid;
+}
+.container > * {
+    visibility: hidden;
+}
