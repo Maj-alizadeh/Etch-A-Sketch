@@ -1,36 +1,52 @@
 let size = 16;
-let container = document.createElement('div');
-container.classList.add('page');
-let gridButton = document.createElement('button');
+let page = document.createElement('div');
+page.classList.add('page');
+
+const container = document.querySelector('.container');
+container.appendChild(page);
+
+const controls = document.querySelector('.controls')
+const clearButton = document.createElement('button');
+const gridButton = document.createElement('button');
+controls.appendChild(gridButton);
+controls.appendChild(clearButton);
+
 gridButton.classList.add('grid-button')
 gridButton.textContent= 'Grid Size';
-document.body.appendChild(gridButton);
 gridButton.addEventListener('click', gridSize)
 
+clearButton.textContent = 'Clear'
+clearButton.addEventListener('click', clearPage)
+
+//change the grid size
 function gridSize() {
     size = prompt('Please enter the grid size:')
-    container.innerHTML='';
-    //page.style.gridTemplateColumns = `repeat (${size},1fr)`;
     sketch();
 
 }
-// creates the grid
-function sketch() {
-    container.setAttribute('style',`grid-template-columns:repeat(${size},1fr)`)
+
+//clears the sketch page and add grid
+function clearPage() {
+    page.innerText = '';
     for (let j = 0; j < size; j++) {
         for (i = 0; i < size; i++){
         let cell = document.createElement('div');
-        container.appendChild(cell) ;
+        page.appendChild(cell) ;
         }
     }
 }
-document.body.appendChild(container);
+
+// creates the grid
+function sketch() {
+    page.setAttribute('style',`grid-template-columns:repeat(${size},1fr)`)
+    clearPage();
+}
+
     
     // on hover acts as a pen!
     function hover(e) {
-        e.stopPropagation();
         e.target.classList.add('hover');
     }
 
 sketch();
-container.addEventListener('mouseover', hover)
+page.addEventListener('mouseover', hover)
